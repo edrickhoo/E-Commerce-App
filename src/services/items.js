@@ -64,6 +64,16 @@ export const updateItemAmount = async (id) => {
   });
 };
 
+// Update favourited
+
+export const updateItemFavourite = async (id, status) => {
+  const docRef = doc(db, "items", id);
+
+  await updateDoc(docRef, {
+    favourited: !status,
+  });
+};
+
 // Update
 
 export const updateItem = async (id, data) => {

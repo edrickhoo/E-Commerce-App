@@ -2,7 +2,7 @@ import React from "react";
 import Item from "../../components/Item/Item";
 import styles from "./ItemGrid.module.scss";
 
-const ItemGrid = ({ products }) => {
+const ItemGrid = ({ products, favourites, removeFavourite }) => {
   console.log(products);
   return (
     <div>
@@ -17,7 +17,12 @@ const ItemGrid = ({ products }) => {
               //       return <Item key={idx} item={item} />;
               //     })}
               //   </React.Fragment>
-              <Item item={items} />
+              <Item
+                key={items.id}
+                item={items}
+                favourites={favourites}
+                removeFavourite={removeFavourite}
+              />
             );
           })}
         </div>

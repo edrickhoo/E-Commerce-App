@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.img {
+  height: 250px;
+  width: 250px;
+}
+
+.details {
+  flex: 1;
+}
+
+.priceDetails {
+  padding-right: 40px;
+}
