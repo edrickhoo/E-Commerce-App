@@ -1,19 +1,9 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import ItemGrid from "../ItemGrid/ItemGrid";
 import styles from "./HomePage.module.scss";
 
-const HomePage = ({ products }) => {
-  const [productsToRender, setProductsToRender] = useState(products);
-
-  const filterItems = (category) => {
-    if (category === "all") {
-      setProductsToRender(products);
-      return;
-    }
-
-    setProductsToRender(products.filter((item) => item.category === category));
-  };
-
+const HomePage = ({ productsToRender, filterItems }) => {
   return (
     <div>
       Carousel

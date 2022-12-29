@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Nav.module.scss";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Nav = ({ cartNum }) => {
   return (
@@ -12,7 +13,9 @@ const Nav = ({ cartNum }) => {
       </div>
 
       <div>
-        <NavLink to="/cart">Cart ({cartNum})</NavLink>
+        <NavLink to="/cart">
+          <FaShoppingCart /> ({cartNum})
+        </NavLink>
       </div>
     </nav>
   );

@@ -9,16 +9,18 @@ import {
   increaseCartItemQuantity,
 } from "../../services/cart";
 
-const ProductPage = ({ setCartRefresh }) => {
+const ProductPage = ({ refreshCart }) => {
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
   const [productGallery, setProductGallery] = useState(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState(0);
   const [refresh, setRefresh] = useState(0);
-
   const { id } = useParams();
-  console.log(id);
+
+  useEffect(() => {
+    fetchItemById();
+  }, [id, refresh]);
 
   const getGallery = (data) => {
     const gallery = data.variants.map((item) => {
@@ -61,8 +63,10 @@ const ProductPage = ({ setCartRefresh }) => {
       if (data.quantity === 0) {
         throw new Error(`${cartItem.name} is out of stock`);
       }
+
       if (cartItem && cartItem.quantityToPurchase < cartItem.quantity) {
-        increaseCartItemQuantity(data.name);
+        await increaseCartItemQuantity(data.name);
+        refreshCart();
         return;
       } else if (
         cartItem?.hasOwnProperty("quantity") &&
@@ -70,17 +74,14 @@ const ProductPage = ({ setCartRefresh }) => {
       ) {
         throw new Error(`Sorry, we have ${cartItem.quantity || 0} remaining`);
       }
+
       console.log("yosh");
-      addItemToCart(data, data.name);
-      setCartRefresh((prev) => prev + 1);
+      await addItemToCart(data, data.name);
+      refreshCart();
     } catch (err) {
       console.log(err);
     }
   };
-
-  useEffect(() => {
-    fetchItemById();
-  }, [id, refresh]);
 
   const hatVariation =
     product?.category === "hat"

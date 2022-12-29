@@ -17,11 +17,13 @@ function App() {
   const [error, setError] = useState(null);
   const [cartProducts, setCartProducts] = useState(null);
   const [cartRefresh, setCartRefresh] = useState(0);
+  const [productsToRender, setProductsToRender] = useState(products);
   const fetchItems = async () => {
     try {
       const data = await getAllItems();
       console.log(data);
       setProducts(data);
+      setProductsToRender(data);
     } catch (e) {
       console.log(e);
       setError(e.message);
@@ -39,29 +41,48 @@ function App() {
 
   useEffect(() => {
     fetchAndSetCartProducts();
-  }, [cartRefresh]);
-
-  useEffect(() => {
     fetchItems();
   }, []);
+
+  const refreshCart = () => {
+    fetchAndSetCartProducts();
+  };
+
+  const filterItems = (category) => {
+    if (category === "all") {
+      setProductsToRender(products);
+      return;
+    }
+
+    setProductsToRender(products.filter((item) => item.category === category));
+  };
+
+  const cartNum =
+    (cartProducts &&
+      cartProducts.reduce((acc, curr) => acc + curr.quantityToPurchase, 0)) ||
+    0;
   return (
     <BrowserRouter>
       <div className="App">
-        <Nav cartNum={(cartProducts && cartProducts.length) || 0} />
+        <Nav cartNum={cartNum} />
         <Routes>
-          <Route path="/" element={<HomePage products={products} />} />
+          <Route
+            path="/"
+            element={
+              <HomePage
+                productsToRender={productsToRender}
+                filterItems={filterItems}
+              />
+            }
+          />
           <Route
             path="/product/:id"
-            element={<ProductPage setCartRefresh={setCartRefresh} />}
+            element={<ProductPage refreshCart={refreshCart} />}
           />
           <Route
             path="/cart"
             element={
-              <CartPage
-                cartProducts={cartProducts}
-                setCartRefresh={setCartRefresh}
-                cartRefresh={cartRefresh}
-              />
+              <CartPage cartProducts={cartProducts} refreshCart={refreshCart} />
             }
           />
           <Route
