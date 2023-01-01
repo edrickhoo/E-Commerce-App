@@ -79,5 +79,7 @@ export const updateItemFavourite = async (id, status) => {
 export const updateItem = async (id, data) => {
   const docRef = doc(db, "items", id);
 
-  await updateDoc(docRef, data);
+  const newDoc = await updateDoc(docRef, data);
+
+  return newDoc;
 };

@@ -6,15 +6,16 @@ import { FaShoppingCart } from "react-icons/fa";
 const Nav = ({ cartNum }) => {
   return (
     <nav className={styles.Nav}>
-      <div></div>
       <div>
         <NavLink to="/">Home</NavLink>
+      </div>
+      <div className={styles.Favourites}>
         <NavLink to="/favourites">Favourites</NavLink>
       </div>
 
       <div>
-        <NavLink to="/cart">
-          <FaShoppingCart /> ({cartNum})
+        <NavLink className={styles.cart_container} to="/cart">
+          Cart <FaShoppingCart className={styles.cart_icon} /> ({cartNum})
         </NavLink>
       </div>
     </nav>

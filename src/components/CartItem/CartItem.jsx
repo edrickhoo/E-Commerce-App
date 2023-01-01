@@ -1,30 +1,34 @@
 import React from "react";
+import { AiOutlineCloseSquare } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import styles from "./CartItem.module.scss";
 
 const CartItem = ({
   product,
   decreaseQuantityToPurchase,
   increaseQuantityToPurchase,
+  removeCartItem,
 }) => {
   return (
     <div className={styles.container}>
       <div className={styles.img}>
-        <img src={product.img} alt={product.name} />
+        <Link to={`/product/${product.item_id}`}>
+          <img src={product.img} alt={product.name} />
+        </Link>
       </div>
       <div className={styles.details}>
-        <h3>{product.name}</h3>
-        <h4>black</h4>
+        <Link to={`/product/${product.item_id}`}>
+          <h3>{product.name}</h3>
+        </Link>
+
+        <div>${product.price_per_unit}</div>
         <div>
-          <span>${product.price_per_unit}</span>
-          <div>
-            <button onClick={() => decreaseQuantityToPurchase(product)}>
-              -
-            </button>
-            <span>{product.quantityToPurchase}</span>
-            <button onClick={() => increaseQuantityToPurchase(product)}>
-              +
-            </button>
-          </div>
+          <button onClick={() => decreaseQuantityToPurchase(product)}>-</button>
+          <span>{product.quantityToPurchase}</span>
+          <button onClick={() => increaseQuantityToPurchase(product)}>+</button>
+        </div>
+        <div>
+          <p>In stock: {product.quantity}</p>
         </div>
       </div>
       <div className={styles.priceDetails}>
@@ -32,6 +36,9 @@ const CartItem = ({
           Product Total: $
           {(product.quantityToPurchase * product.price_per_unit).toFixed(2)}
         </div>
+        <button onClick={() => removeCartItem(product.id)}>
+          Remove From Cart
+        </button>
       </div>
     </div>
   );

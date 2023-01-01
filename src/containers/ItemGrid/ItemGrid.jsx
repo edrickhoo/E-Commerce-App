@@ -5,9 +5,7 @@ import styles from "./ItemGrid.module.scss";
 const ItemGrid = ({ products, favourites, removeFavourite }) => {
   console.log(products);
   return (
-    <div>
-      <h3>Products</h3>
-
+    <div className={styles.ItemGrid}>
       {products ? (
         <div className={styles.Products_Container}>
           {products.map((items) => {
@@ -27,7 +25,11 @@ const ItemGrid = ({ products, favourites, removeFavourite }) => {
           })}
         </div>
       ) : (
-        <div>All products are sold out</div>
+        <div>
+          {products && products.length === 0
+            ? "All products are sold out"
+            : "Loading..."}
+        </div>
       )}
     </div>
   );

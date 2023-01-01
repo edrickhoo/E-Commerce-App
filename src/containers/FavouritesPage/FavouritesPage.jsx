@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ItemGrid from "../ItemGrid/ItemGrid";
 import { getAllItems, updateItemFavourite } from "../../services/items";
+import styles from "./FavouritesPage.module.scss";
 
 const FavouritesPage = () => {
   const [favourites, setFavourites] = useState(null);
@@ -26,8 +27,8 @@ const FavouritesPage = () => {
   }, [refresh]);
 
   return (
-    <div>
-      <h2>Favourites</h2>
+    <div className={styles.Container}>
+      <h2 className={styles.Title}>Favourites</h2>
 
       {favourites && favourites.length > 0 ? (
         <ItemGrid
@@ -36,7 +37,11 @@ const FavouritesPage = () => {
           removeFavourite={removeFavourite}
         />
       ) : (
-        <p>There are currently no favourited items.</p>
+        <p>
+          {favourites && favourites.length === 0
+            ? "There are currently no favourited items."
+            : "Loading..."}
+        </p>
       )}
     </div>
   );

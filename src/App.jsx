@@ -8,6 +8,7 @@ import ProductPage from "./containers/ProductPage/ProductPage";
 import CartPage from "./containers/CartPage/CartPage";
 import FavouritesPage from "./containers/FavouritesPage/FavouritesPage";
 import { getAllCartItems } from "./services/cart";
+import Footer from "./components/Footer/Footer";
 
 // Have database with object has property .variation with defaults and colours each have quants
 // Two or more item of same items 10% discount when checkout
@@ -16,12 +17,11 @@ function App() {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
   const [cartProducts, setCartProducts] = useState(null);
-  const [cartRefresh, setCartRefresh] = useState(0);
   const [productsToRender, setProductsToRender] = useState(products);
   const fetchItems = async () => {
     try {
       const data = await getAllItems();
-      console.log(data);
+      console.log(data, "new");
       setProducts(data);
       setProductsToRender(data);
     } catch (e) {
@@ -46,6 +46,10 @@ function App() {
 
   const refreshCart = () => {
     fetchAndSetCartProducts();
+  };
+
+  const refreshProducts = () => {
+    fetchItems();
   };
 
   const filterItems = (category) => {
@@ -82,14 +86,16 @@ function App() {
           <Route
             path="/cart"
             element={
-              <CartPage cartProducts={cartProducts} refreshCart={refreshCart} />
+              <CartPage
+                cartProducts={cartProducts}
+                refreshCart={refreshCart}
+                refreshProducts={refreshProducts}
+              />
             }
           />
-          <Route
-            path="/favourites"
-            element={<FavouritesPage products={products} />}
-          />
+          <Route path="/favourites" element={<FavouritesPage />} />
         </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   );

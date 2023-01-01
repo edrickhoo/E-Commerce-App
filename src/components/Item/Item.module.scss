@@ -1,12 +1,21 @@
 .item {
-  border: 1px solid black;
+  border: 1px solid grey;
   display: flex;
   flex-direction: column;
   position: relative;
 
   &__Img_Container {
-    height: 300px;
-    aspect-ratio: 1;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+
+    max-height: 400px;
+    max-width: 400px;
+
+    @media screen and (min-width: 768px) {
+      height: auto;
+      width: auto;
+    }
   }
 
   &__Desc_Container {

@@ -8,6 +8,7 @@ import {
   getCartItemByName,
   increaseCartItemQuantity,
 } from "../../services/cart";
+import SoldOut from "../../components/SoldOut/SoldOut";
 
 const ProductPage = ({ refreshCart }) => {
   const [product, setProduct] = useState(null);
@@ -84,23 +85,24 @@ const ProductPage = ({ refreshCart }) => {
   };
 
   const hatVariation =
-    product?.category === "hat"
-      ? product.variants.map((item, idx) => (
-          <div key={idx} onClick={() => handleChangeSelectedProduct(idx)}>
-            <img src={item.img} alt="" />
-          </div>
-        ))
-      : null;
-
+    product?.category === "hat" &&
+    product.variants.map((item, idx) => (
+      <div
+        className={styles.HatVariation}
+        key={idx}
+        onClick={() => handleChangeSelectedProduct(idx)}
+      >
+        <img src={item.img} alt="" />
+        {item.quantity === 0 && <SoldOut />}
+      </div>
+    ));
   const hoddieVariation =
-    product?.category === "hoodie"
-      ? product.variants.map((item, idx) => (
-          <button key={idx} onClick={() => handleChangeSelectedProduct(idx)}>
-            <span>{item.size}</span>
-          </button>
-        ))
-      : null;
-
+    product?.category === "hoodie" &&
+    product.variants.map((item, idx) => (
+      <button key={idx} onClick={() => handleChangeSelectedProduct(idx)}>
+        <span>{item.size}</span>
+      </button>
+    ));
   const handleFavouriteToggle = async () => {
     await updateItemFavourite(id, product.favourited);
     setRefresh(refresh + 1);
@@ -110,7 +112,7 @@ const ProductPage = ({ refreshCart }) => {
     <div>
       {product ? (
         <div className={styles.ProductPage}>
-          <div>
+          <div className={styles.ImgContainer}>
             {productGallery ? (
               <>
                 <img src={productGallery[galleryIndex]} alt="" />
@@ -118,8 +120,9 @@ const ProductPage = ({ refreshCart }) => {
             ) : (
               <p>Image unavaliable</p>
             )}
+            {product.variants[selectedProduct].quantity === 0 && <SoldOut />}
           </div>
-          <div>
+          <div className={styles.DetailsContainer}>
             <h2>{product.name}</h2>
             <span>${product.price_per_unit}</span>
             <div className={styles.ProductPage_Variants}>
