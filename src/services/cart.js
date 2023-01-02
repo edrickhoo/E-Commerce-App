@@ -61,7 +61,6 @@ export const addItemToCart = async (data, id) => {
 
   const collectionRef = doc(db, "cart", id);
   const newDoc = await setDoc(collectionRef, item);
-  console.log(newDoc);
   return newDoc;
 };
 

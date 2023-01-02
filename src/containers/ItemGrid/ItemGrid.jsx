@@ -3,7 +3,6 @@ import Item from "../../components/Item/Item";
 import styles from "./ItemGrid.module.scss";
 
 const ItemGrid = ({ products, favourites, removeFavourite }) => {
-  console.log(products);
   return (
     <div className={styles.ItemGrid}>
       {products ? (

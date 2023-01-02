@@ -45,7 +45,6 @@ export const addItem = async (data) => {
   const collectionRef = collection(db, "items");
 
   const newDoc = await addDoc(collectionRef, item);
-  console.log(newDoc);
   return newDoc;
 };
 

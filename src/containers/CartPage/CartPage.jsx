@@ -16,7 +16,6 @@ const CartPage = ({ cartProducts, refreshCart, refreshProducts }) => {
 
   useEffect(() => {
     refreshCart();
-    console.log(cartProducts);
   }, []);
 
   // Increase quantityToPurchase func for Cart Item
@@ -44,7 +43,6 @@ const CartPage = ({ cartProducts, refreshCart, refreshProducts }) => {
   const decreaseQuantityToPurchase = async (data) => {
     const cartItem = await getCartItemByName(data.name);
     try {
-      console.log(cartItem);
       if (cartItem && cartItem.quantityToPurchase > 1) {
         await decreaseCartItemQuantity(data.name);
 
@@ -153,8 +151,6 @@ const CartPage = ({ cartProducts, refreshCart, refreshProducts }) => {
       await removeCartItems();
       refreshProducts();
     }
-
-    console.log(isAllInStock);
   };
 
   const removeCartItems = async () => {
@@ -194,13 +190,13 @@ const CartPage = ({ cartProducts, refreshCart, refreshProducts }) => {
       const newQty =
         variants.find((item) => item.variant_name === cartProducts[i].name)
           .quantity - cartProducts[i].quantityToPurchase;
-      console.log(newQty, "pizza");
+
       const item = await getItemById(cartProducts[i].item_id);
       const index = item.variants.findIndex(
         (element) => element.variant_name === cartProducts[i].name
       );
       item.variants[index].quantity = newQty;
-      console.log(item);
+
       await updateItem(cartProducts[i].item_id, item);
     }
 

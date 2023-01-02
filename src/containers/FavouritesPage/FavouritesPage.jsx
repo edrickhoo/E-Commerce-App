@@ -10,7 +10,6 @@ const FavouritesPage = () => {
   const fetchItems = async () => {
     try {
       const data = await getAllItems();
-      console.log(data);
       setFavourites(data.filter((item) => item.favourited === true));
     } catch (e) {
       console.log(e.message);

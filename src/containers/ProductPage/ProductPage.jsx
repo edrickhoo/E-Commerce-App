@@ -33,7 +33,6 @@ const ProductPage = ({ refreshCart }) => {
   const fetchItemById = async () => {
     try {
       const data = await getItemById(id);
-      console.log(data);
 
       getGallery(data);
       setProduct(data);
@@ -57,7 +56,6 @@ const ProductPage = ({ refreshCart }) => {
       name: product.variants[selectedProduct].variant_name,
       item_id: product.id,
     };
-    console.log(data, "idid");
 
     const cartItem = await getCartItemByName(data.name);
     try {
@@ -75,8 +73,6 @@ const ProductPage = ({ refreshCart }) => {
       ) {
         throw new Error(`Sorry, we have ${cartItem.quantity || 0} remaining`);
       }
-
-      console.log("yosh");
       await addItemToCart(data, data.name);
       refreshCart();
     } catch (err) {
