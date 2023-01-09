@@ -27,6 +27,8 @@ function App() {
     }
   };
 
+  const pizza = "hello";
+
   const fetchAndSetCartProducts = async () => {
     try {
       const data = await getAllCartItems();

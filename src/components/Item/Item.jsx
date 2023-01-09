@@ -13,7 +13,11 @@ const Item = ({ item, favourites, removeFavourite }) => {
     <div className={styles.item}>
       <div className={styles.item__Img_Container}>
         <Link to={`/product/${item.id}`} style={{ textDecoration: "none" }}>
-          <img src={item.variants[0].img} alt="" />
+          <img
+            className={styles.Img}
+            src={item.variants[0].img}
+            alt={item.variants[0].variant_name}
+          />
         </Link>
         {totalQty === 0 && <SoldOut />}
       </div>

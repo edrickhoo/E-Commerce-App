@@ -9,6 +9,8 @@ import {
   increaseCartItemQuantity,
 } from "../../services/cart";
 import SoldOut from "../../components/SoldOut/SoldOut";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductPage = ({ refreshCart }) => {
   const [product, setProduct] = useState(null);
@@ -65,6 +67,10 @@ const ProductPage = ({ refreshCart }) => {
 
       if (cartItem && cartItem.quantityToPurchase < cartItem.quantity) {
         await increaseCartItemQuantity(data.name);
+        console.log(toast);
+        toast.success(`${cartItem.name} x1 has been add to cart.`, {
+          autoClose: 3000,
+        });
         refreshCart();
         return;
       } else if (
@@ -74,6 +80,11 @@ const ProductPage = ({ refreshCart }) => {
         throw new Error(`Sorry, we have ${cartItem.quantity || 0} remaining`);
       }
       await addItemToCart(data, data.name);
+      console.log("hello");
+      toast.success(`${data.name} x1 has been add to cart.`, {
+        autoClose: 3000,
+      });
+
       refreshCart();
     } catch (err) {
       console.log(err);
@@ -85,7 +96,7 @@ const ProductPage = ({ refreshCart }) => {
     product.variants.map((item, idx) => (
       <div
         className={styles.HatVariation}
-        key={idx}
+        key={item.variant_name}
         onClick={() => handleChangeSelectedProduct(idx)}
       >
         <img src={item.img} alt="" />
@@ -137,6 +148,7 @@ const ProductPage = ({ refreshCart }) => {
               <button onClick={handleFavouriteToggle}>
                 <AiFillHeart color={product.favourited ? "red" : "white"} />
               </button>
+              <ToastContainer />
             </div>
             <div>
               <h4>Product Details</h4>
