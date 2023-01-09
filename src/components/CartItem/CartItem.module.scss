@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  align-items: center;
+  border: 1px solid grey;
+  flex-direction: column;
+  & > * {
+    margin-bottom: 35px;
+  }
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    & > * {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.img {
+  max-height: 400px;
+  max-width: 400px;
+  @media screen and (min-width: 768px) {
+    height: 250px;
+    width: 250px;
+  }
+}
+
+.details {
+  position: relative;
+
+  & > * {
+    margin-bottom: 10px;
+  }
+  flex: 1;
+}
+
+.priceDetails {
+  & > :not(:last-child) {
+    margin-bottom: 20px;
+  }
+  @media screen and (min-width: 768px) {
+    padding-right: 40px;
+  }
+}
+
+.Close {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+}

@@ -1,0 +1,37 @@
+.item {
+  border: 1px solid grey;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &__Img_Container {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    // max-height: 400px;
+
+    @media screen and (min-width: 768px) {
+      height: auto;
+      width: auto;
+    }
+  }
+
+  &__Desc_Container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.favouriteButton {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.Img {
+  object-fit: cover;
+}

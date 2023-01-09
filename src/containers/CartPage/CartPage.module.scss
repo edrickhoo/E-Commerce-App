@@ -1,0 +1,23 @@
+.cartItems {
+  min-height: 60vh;
+  > :not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.checkOutContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 50px;
+  padding-top: 30px;
+}
+
+.Title {
+  margin-top: 10px;
+  margin-bottom: 35px;
+}
+
+.Container {
+  padding: 25px 15px;
+}
