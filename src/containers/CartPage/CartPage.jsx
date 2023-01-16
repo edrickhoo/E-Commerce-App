@@ -131,20 +131,6 @@ const CartPage = ({ cartProducts, refreshCart, refreshProducts }) => {
 
       await updateItem(cartProducts[i].item_id, item);
     }
-
-    // await cartProducts.forEach(async (product) => {
-    //   const newQty =
-    //     variants.find((item) => item.variant_name === product.name).quantity -
-    //     product.quantityToPurchase;
-    //   console.log(newQty, "pizza");
-    //   const item = await getItemById(product.item_id);
-    //   const index = item.variants.findIndex(
-    //     (element) => element.variant_name === product.name
-    //   );
-    //   item.variants[index].quantity = newQty;
-    //   console.log(item);
-    //   await updateItem(product.item_id, item);
-    // });
   };
 
   return (
@@ -186,17 +172,17 @@ const CartPage = ({ cartProducts, refreshCart, refreshProducts }) => {
                   : 0}
               </span>
               <div>
-                <button
+                {/* <button
                   disabled={cartProducts && cartProducts.length === 0}
                   onClick={() => checkOut()}
                 >
                   Check Out
-                </button>
+                </button> */}
                 <button
                   disabled={cartProducts && cartProducts.length === 0}
                   onClick={() => checkOutAndRemoveFromDatabase()}
                 >
-                  Check Out (Removing from database)
+                  Check Out (Removing stock from database)
                 </button>
               </div>
             </div>
