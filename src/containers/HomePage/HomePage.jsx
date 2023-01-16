@@ -11,8 +11,8 @@ const HomePage = ({ productsToRender, filterItems }) => {
         <h3 className={styles.Title}>Featured</h3>
         <Carousel />
       </div>
-      <div>
-        <div className={styles.Container}>
+      <div className={styles.Container}>
+        <div>
           <h3 className={styles.Title}>Products</h3>
           <div className={styles.filterButtons}>
             <button onClick={() => filterItems("all")}>All</button>
