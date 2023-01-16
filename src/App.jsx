@@ -67,7 +67,10 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Nav cartNum={cartNum} />
+        <header>
+          <Nav cartNum={cartNum} />
+        </header>
+
         <Routes>
           <Route
             path="/"
