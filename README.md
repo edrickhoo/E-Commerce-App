@@ -79,7 +79,7 @@ At a minimum your e-shop website should have two pages:
 
 ## Reflection
 * What went well?
-  - It was my first time using firestore in a project. I think it went well as it inferace to create a collection and add documents were easy to use.
+  - It was my first time using firestore in a project. I think it went well as it interface to create a collection and add documents were easy to use.
 * What are you proud of? 
   - I am proud that my understanding of a fullstack application linking frontend to a backend and how they interact using REST api methods has developed through building this project.
 * What was a challenge?
