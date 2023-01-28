@@ -116,7 +116,7 @@ const ProductPage = ({ refreshCart }) => {
   };
 
   return (
-    <div>
+    <>
       {product ? (
         <div className={styles.ProductPage}>
           <div className={styles.ImgContainer}>
@@ -131,7 +131,7 @@ const ProductPage = ({ refreshCart }) => {
           </div>
           <div className={styles.DetailsContainer}>
             <h2>{product.name}</h2>
-            <span>${product.price_per_unit}</span>
+            <div className={styles.Price}>${product.price_per_unit}</div>
             <div className={styles.ProductPage_Variants}>
               {hatVariation}
               {hoddieVariation}
@@ -140,6 +140,7 @@ const ProductPage = ({ refreshCart }) => {
               <button
                 disabled={product.variants[selectedProduct].quantity === 0}
                 onClick={handleAddItemToCart}
+                className={styles.AddCartBtn}
               >
                 {product.variants[selectedProduct].quantity === 0
                   ? "Sold Out"
@@ -151,15 +152,15 @@ const ProductPage = ({ refreshCart }) => {
               <ToastContainer />
             </div>
             <div>
-              <h4>Product Details</h4>
-              <p>{product.description}</p>
+              <h4 className={styles.ProductDetails}>Product Details</h4>
+              <p className={styles.Description}>{product.description}</p>
             </div>
           </div>
         </div>
       ) : (
         error
       )}
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import { getAllItems } from "./services/items";
@@ -8,6 +7,7 @@ import ProductPage from "./containers/ProductPage/ProductPage";
 import CartPage from "./containers/CartPage/CartPage";
 import FavouritesPage from "./containers/FavouritesPage/FavouritesPage";
 import { getAllCartItems } from "./services/cart";
+import Container from "./containers/Container/Container";
 
 function App() {
   const [products, setProducts] = useState(null);
@@ -26,8 +26,6 @@ function App() {
       setError(e.message);
     }
   };
-
-  const pizza = "hello";
 
   const fetchAndSetCartProducts = async () => {
     try {
@@ -67,36 +65,35 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <header>
-          <Nav cartNum={cartNum} />
-        </header>
-
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <HomePage
-                productsToRender={productsToRender}
-                filterItems={filterItems}
-              />
-            }
-          />
-          <Route
-            path="/product/:id"
-            element={<ProductPage refreshCart={refreshCart} />}
-          />
-          <Route
-            path="/cart"
-            element={
-              <CartPage
-                cartProducts={cartProducts}
-                refreshCart={refreshCart}
-                refreshProducts={refreshProducts}
-              />
-            }
-          />
-          <Route path="/favourites" element={<FavouritesPage />} />
-        </Routes>
+        <Nav cartNum={cartNum} />
+        <Container>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  productsToRender={productsToRender}
+                  filterItems={filterItems}
+                />
+              }
+            />
+            <Route
+              path="/product/:id"
+              element={<ProductPage refreshCart={refreshCart} />}
+            />
+            <Route
+              path="/cart"
+              element={
+                <CartPage
+                  cartProducts={cartProducts}
+                  refreshCart={refreshCart}
+                  refreshProducts={refreshProducts}
+                />
+              }
+            />
+            <Route path="/favourites" element={<FavouritesPage />} />
+          </Routes>
+        </Container>
       </div>
     </BrowserRouter>
   );

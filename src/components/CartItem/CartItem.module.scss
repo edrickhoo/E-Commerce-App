@@ -27,10 +27,8 @@
 }
 
 .details {
-  position: relative;
-
-  & > * {
-    margin-bottom: 10px;
+  & > :not(:last-child) {
+    margin-bottom: 35px;
   }
   flex: 1;
 }
@@ -44,8 +42,15 @@
   }
 }
 
-.Close {
-  position: absolute;
-  top: 3px;
-  right: 3px;
+.PurchaseQty {
+  margin: 0 10px;
+  font-size: 20px;
+}
+
+.PricePerUnit {
+  font-size: 18px;
+}
+
+.TotalPrice {
+  font-size: 18px;
 }

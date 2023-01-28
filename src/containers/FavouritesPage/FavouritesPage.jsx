@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ItemGrid from "../ItemGrid/ItemGrid";
 import { getAllItems, updateItemFavourite } from "../../services/items";
 import styles from "./FavouritesPage.module.scss";
+import { Container } from "postcss";
 
 const FavouritesPage = () => {
   const [favourites, setFavourites] = useState(null);
@@ -26,7 +27,7 @@ const FavouritesPage = () => {
   }, [refresh]);
 
   return (
-    <div className={styles.Container}>
+    <>
       <h2 className={styles.Title}>Favourites</h2>
 
       {favourites && favourites.length > 0 ? (
@@ -42,7 +43,7 @@ const FavouritesPage = () => {
             : "Loading..."}
         </p>
       )}
-    </div>
+    </>
   );
 };
 

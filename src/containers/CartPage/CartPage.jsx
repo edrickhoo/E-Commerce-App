@@ -63,28 +63,6 @@ const CartPage = ({ cartProducts, refreshCart, refreshProducts }) => {
     refreshCart();
   };
 
-  const checkOut = async () => {
-    const items = await getAllItems();
-    const variants = items.map((item) => item.variants).flat();
-
-    const isAllInStock = cartProducts.every((cartItem) => {
-      return variants.some((variant) => {
-        if (
-          variant.variant_name === cartItem.name &&
-          cartItem.quantityToPurchase <= variant.quantity
-        ) {
-          return true;
-        }
-        return false;
-      });
-    });
-    if (isAllInStock) {
-      setSuccessPurchase(true);
-      await removeCartItems();
-      refreshProducts();
-    }
-  };
-
   const removeCartItems = async () => {
     await cartProducts.forEach((item) => {
       deleteCartItem(item.id);
@@ -134,7 +112,7 @@ const CartPage = ({ cartProducts, refreshCart, refreshProducts }) => {
   };
 
   return (
-    <div className={styles.Container}>
+    <>
       {!successPurchase ? (
         <>
           <h2 className={styles.Title}>Cart</h2>
@@ -159,7 +137,7 @@ const CartPage = ({ cartProducts, refreshCart, refreshProducts }) => {
           </div>
           <div className={styles.checkOutContainer}>
             <div>
-              <span>
+              <span className={styles.TotalPrice}>
                 Total: $
                 {cartProducts
                   ? cartProducts
@@ -172,12 +150,6 @@ const CartPage = ({ cartProducts, refreshCart, refreshProducts }) => {
                   : 0}
               </span>
               <div>
-                {/* <button
-                  disabled={cartProducts && cartProducts.length === 0}
-                  onClick={() => checkOut()}
-                >
-                  Check Out
-                </button> */}
                 <button
                   disabled={cartProducts && cartProducts.length === 0}
                   onClick={() => checkOutAndRemoveFromDatabase()}
@@ -191,7 +163,7 @@ const CartPage = ({ cartProducts, refreshCart, refreshProducts }) => {
       ) : (
         <p>Thank you for your purchase</p>
       )}
-    </div>
+    </>
   );
 };
 

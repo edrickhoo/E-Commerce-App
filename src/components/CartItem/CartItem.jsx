@@ -1,5 +1,3 @@
-import React from "react";
-import { AiOutlineCloseSquare } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import styles from "./CartItem.module.scss";
 
@@ -21,18 +19,20 @@ const CartItem = ({
           <h3>{product.name}</h3>
         </Link>
 
-        <div>${product.price_per_unit}</div>
+        <div className={styles.PricePerUnit}>${product.price_per_unit}</div>
         <div>
           <button onClick={() => decreaseQuantityToPurchase(product)}>-</button>
-          <span>{product.quantityToPurchase}</span>
+          <span className={styles.PurchaseQty}>
+            {product.quantityToPurchase}
+          </span>
           <button onClick={() => increaseQuantityToPurchase(product)}>+</button>
         </div>
         <div>
-          <p>In stock: {product.quantity}</p>
+          <p>Stock: {product.quantity}</p>
         </div>
       </div>
       <div className={styles.priceDetails}>
-        <div>
+        <div className={styles.TotalPrice}>
           Product Total: $
           {(product.quantityToPurchase * product.price_per_unit).toFixed(2)}
         </div>

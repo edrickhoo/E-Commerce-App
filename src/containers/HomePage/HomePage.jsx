@@ -6,12 +6,12 @@ import styles from "./HomePage.module.scss";
 
 const HomePage = ({ productsToRender, filterItems }) => {
   return (
-    <div>
-      <div className={styles.Container}>
+    <>
+      <div>
         <h3 className={styles.Title}>Featured</h3>
         <Carousel />
       </div>
-      <div className={styles.Container}>
+      <div>
         <div>
           <h3 className={styles.Title}>Products</h3>
           <div className={styles.filterButtons}>
@@ -22,7 +22,7 @@ const HomePage = ({ productsToRender, filterItems }) => {
         </div>
         <ItemGrid products={productsToRender} />
       </div>
-    </div>
+    </>
   );
 };
 
