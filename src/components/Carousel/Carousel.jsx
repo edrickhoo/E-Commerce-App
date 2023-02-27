@@ -54,13 +54,13 @@ const Carousel = () => {
             <Link to={`/product/pds7c0wEJHJ4yaOE0PGA`}>
               <img
                 className="d-block w-100"
-                src="https://cdn.shopify.com/s/files/1/0033/2660/7409/products/gonthwid-sweat-a-capuche-fin-brode-sty_main-0_2-404830_1800x1800.jpg?v=1643300222"
+                src="https://cdn.shopify.com/s/files/1/0033/2660/7409/products/japanese-white-aesthetic-hoodie_750x.jpg?v=1668339823"
                 alt="Third slide"
               />
               <div
                 className={`carousel-caption ${styles.card_cap} d-none d-md-block`}
               >
-                <h5>Japanese Great Wave Off Kanagawa Hoodie</h5>
+                <h5>Japanese Aesthetic Hoodie</h5>
                 <p>$69.99</p>
               </div>
             </Link>
