@@ -24,7 +24,7 @@ const Carousel = () => {
             <Link to={`/product/3qVySGyXZgX5fW1wqjOR`}>
               <img
                 className="d-block w-100"
-                src="https://cdn.shopify.com/s/files/1/0033/2660/7409/products/peach-emoji-black-dad-hat-866103_1800x1800.jpg?v=1589014130"
+                src="https://i.etsystatic.com/21984665/r/il/01b1b1/2140413076/il_794xN.2140413076_j23p.jpg"
                 alt="First slide"
               />
               <div
@@ -39,7 +39,7 @@ const Carousel = () => {
             <Link to={`/product/60qH5oadRp4ZCWvT1pqm`}>
               <img
                 className="d-block w-100"
-                src="https://cdn.shopify.com/s/files/1/0033/2660/7409/products/japanese-koi-fish-grey-hoodie-562251_1800x1800.jpg?v=1650466985"
+                src="https://i.etsystatic.com/21984665/r/il/01b1b1/2140413076/il_794xN.2140413076_j23p.jpg"
                 alt="Second slide"
               />
               <div
@@ -54,13 +54,13 @@ const Carousel = () => {
             <Link to={`/product/pds7c0wEJHJ4yaOE0PGA`}>
               <img
                 className="d-block w-100"
-                src="https://cdn.shopify.com/s/files/1/0033/2660/7409/products/japanese-white-aesthetic-hoodie_750x.jpg?v=1668339823"
+                src="https://i.ebayimg.com/images/g/8RcAAOSwtgtj8XLJ/s-l1600.jpg"
                 alt="Third slide"
               />
               <div
                 className={`carousel-caption ${styles.card_cap} d-none d-md-block`}
               >
-                <h5>Japanese Aesthetic Hoodie</h5>
+                <h5>Japanese Dragon Hoodie</h5>
                 <p>$69.99</p>
               </div>
             </Link>
